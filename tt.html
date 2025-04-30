@@ -2,104 +2,11 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>Моя библиотека</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-      }
-
-      header {
-        background-color: #4a90e2;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        font-size: 24px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
-
-      .container {
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      #addBookButton {
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: #4a90e2;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 20px;
-      }
-
-      #bookForm {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 30px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        display: none;
-        z-index: 10;
-        width: 300px;
-      }
-
-      #bookForm input[type="text"],
-      #bookForm input[type="number"] {
-        width: 100%;
-        padding: 8px;
-        margin: 8px 0;
-        box-sizing: border-box;
-      }
-
-      #library {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-        z-index: 1;
-      }
-
-      .book-card {
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px;
-        width: 200px;
-        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .book-card button {
-        margin-top: 10px;
-        background: #e74c3c;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 5;
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="./cs.css" />
+    <title>библиотека</title>
   </head>
   <body>
-    <header>Моя библиотека</header>
+    <header>библиотека</header>
 
     <div class="container">
       <button id="addBookButton">Добавить книгу</button>
@@ -126,75 +33,6 @@
 
     <div id="library"></div>
 
-    <script>
-      const myLibrary = JSON.parse(localStorage.getItem("myLibrary")) || [];
-
-      function saveLibrary() {
-        localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-      }
-
-      function showBooks() {
-        const place = document.getElementById("library");
-        place.innerHTML = "";
-
-        myLibrary.forEach((book, i) => {
-          place.innerHTML += `
-          <div class="book-card">
-            <h3>${book.title}</h3>
-            <p>Автор: ${book.author}</p>
-            <p>Страниц: ${book.pages}</p>
-            <p>Прочитано: ${book.isRead === "yes" ? "Да" : "Нет"}</p>
-            <button onclick="deleteBook(${i})">Удалить</button>
-          </div>
-        `;
-        });
-      }
-
-      function deleteBook(i) {
-        myLibrary.splice(i, 1);
-        saveLibrary();
-        showBooks();
-      }
-
-      function addBook(e) {
-        e.preventDefault();
-
-        const book = {
-          title: title.value,
-          author: author.value,
-          pages: pages.value,
-          isRead:
-            document.querySelector('input[name="isRead"]:checked')?.value ||
-            "no",
-        };
-
-        myLibrary.push(book);
-        saveLibrary();
-        showBooks();
-
-        bookForm.reset();
-        bookForm.style.display = "none";
-        overlay.style.display = "none";
-      }
-
-      function openForm() {
-        bookForm.style.display = "block";
-        overlay.style.display = "block";
-      }
-
-      const addBookButton = document.getElementById("addBookButton");
-      const bookForm = document.getElementById("bookForm");
-      const overlay = document.getElementById("overlay");
-
-      addBookButton.onclick = openForm;
-      bookForm.onsubmit = addBook;
-
-      overlay.onclick = () => {
-        bookForm.style.display = "none";
-        overlay.style.display = "none";
-      };
-
-      showBooks();
-    </script>
+    <script src="./app.js"></script>
   </body>
 </html>
