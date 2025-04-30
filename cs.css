@@ -1,94 +1,114 @@
-
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-      }
-
-      header {
-        background-color: #4a90e2;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        font-size: 24px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
-
-      .container {
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      #addBookButton {
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: #4a90e2;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 20px;
-      }
-
-      #bookForm {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 30px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        display: none;
-        z-index: 10;
-        width: 300px;
-      }
-
-      #bookForm input[type="text"],
-      #bookForm input[type="number"] {
-        width: 100%;
-        padding: 8px;
-        margin: 8px 0;
-        box-sizing: border-box;
-      }
-
-      #library {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-        z-index: 1;
-      }
-
-      .book-card {
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px;
-        width: 200px;
-        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .book-card button {
-        margin-top: 10px;
-        background: #e74c3c;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 5;
-        display: none;
-      }
-    
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+  }
+  
+  /* Шапка */
+  header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Контейнер кнопки */
+  .container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* Кнопка "Добавить книгу" */
+  #addBookButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  /* Затемнённый фон (подложка) */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none;
+  }
+  
+  /* Форма добавления книги */
+  #bookForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: none;
+    z-index: 9999; /* Гарантированно выше overlay и остальных */
+    width: 300px;
+  }
+  
+  #bookForm input[type="text"],
+  #bookForm input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+  #bookForm button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  /* Список книг */
+  #library {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1; /* ниже формы */
+  }
+  
+  .book-card {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .book-card button {
+    margin-top: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
